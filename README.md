@@ -10,3 +10,9 @@
 
 **Output:**
 - Pdf with specific pages
+
+### Install packages using pip
+> pip install -r requirements.txt
+
+### Run Project
+> python main.py
