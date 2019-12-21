@@ -1,0 +1,105 @@
+<html>	
+   <head>
+	<style>
+		body{
+			margin: 0;
+			font-family: Arial, Helvetica, sans-serif;
+			background-color: slategrey;
+		}
+		.content{
+			border: 3px solid #f1f1f1;
+  			font-family: Arial;
+		}
+		.content-header{
+			padding: 20px;
+			background-color: #f1f1f1;
+		}
+		.main{
+			width: 75%;
+			margin-top: 2rem;
+			display: flex;
+			margin: auto;
+			justify-content: center;
+			background-color: lightcyan;
+		}
+		.error{
+			color: white;
+			background: indianred !important;
+			padding: 15px !important;
+			border-radius: 0 !important;
+			position: relative;
+			display: inline-block !important;
+			box-shadow: 1px 1px 1px #aaaaaa;
+			margin-top: 10px;
+		}
+		.download-link {
+			width: 100%;
+		}
+		.download-link a {
+			text-decoration: none;
+		}
+
+		input[type=text], input[type=submit] {
+		  width: 100%;
+		  padding: 12px;
+		  margin: 8px 0;
+		  border: 1px solid #ccc;
+		}
+
+		input[type=submit] {
+		  background-color: #4CAF50;
+		  color: white;
+		  border: none;
+		}
+
+		input[type=submit]:hover {
+		  opacity: 0.8;
+		}
+
+		.form-inline button {
+		  padding: 10px 20px;
+		  background-color: dodgerblue;
+		  border: 1px solid #ddd;
+		  color: white;
+		  cursor: pointer;
+		}
+
+	</style>
+   </head>
+   <body>
+	<div class="main">
+		<div class="content">
+			<div class="content-header">
+				<h2>Extracting Specific Pages From a PDF</h2>
+    			<p>Lorem ipsum text about why you should subscribe to our newsletter blabla. Lorem ipsum text about why you should subscribe to our newsletter blabla.</p>
+			</div>
+			<div class="form-control">
+				{% if isFileSubmitted == False %}
+					<form action = "/uploader" method = "POST" enctype = "multipart/form-data">
+						<input type = "file" name = "file" /><br/>
+						<div class="form-inline">
+							<label for="start">Start</label>
+							<input type = "text" name = "start" placeholder="start page" required/>
+							<label for="end">End</label>
+							<input type = "text" name = "end" placeholder="end page" required/>
+						</div>
+						<input id="submit-btn" type = "submit"/><br/>
+					</form>
+					{% if error is defined %}
+					<div class="error">
+						{{ error }}
+					</div>
+					{% endif %}
+				{% endif %}
+			</div>
+
+		{% if isFileSubmitted == True %}
+			<div class="download-link">
+				<a href="/download?file={{fileName}}"> Download File</a>
+			</div>
+		{% endif %}
+
+		</div>
+	</div>
+   </body>
+</html>
